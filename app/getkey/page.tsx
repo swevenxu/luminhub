@@ -6,11 +6,17 @@ import { motion } from 'framer-motion';
 import Button from '@/components/Button';
 import Navbar from '@/components/Navbar';
 
-// Country tiers for ad targeting
+// Country tiers for ad targeting (based on CPM rates)
+// Tier 1: Highest CPM ($5-15+) - Premium markets
 const TIER1_COUNTRIES = ['au', 'at', 'be', 'ca', 'dk', 'fi', 'fr', 'de', 'ie', 'it', 'lu', 'nl', 'nz', 'no', 'es', 'se', 'ch', 'uk', 'gb', 'us'];
-const TIER2_COUNTRIES = ['ee', 'fj', 'gr', 'gy', 'hk', 'hu', 'is', 'id', 'il', 'jp', 'kz', 'lv', 'lt', 'mo', 'my', 'mt', 'mx', 'me', 'ma', 'np', 'om', 'pa', 'py', 'pe', 'ph', 'pl', 'pt', 'pr', 'qa', 'kr', 'ro', 'ru', 'sa', 'rs', 'sg', 'sk', 'si', 'za', 'th', 'tr', 'ua', 'ae', 'uy', 'vu'];
 
-type UserTier = 'tier1' | 'tier2' | 'default' | 'loading';
+// Tier 2: Medium CPM ($2-5) - Developed/emerging markets
+const TIER2_COUNTRIES = ['ee', 'fj', 'gr', 'gy', 'hk', 'hu', 'is', 'il', 'jp', 'kz', 'lv', 'lt', 'mo', 'my', 'mt', 'mx', 'me', 'ma', 'om', 'pa', 'py', 'pe', 'ph', 'pl', 'pt', 'pr', 'qa', 'kr', 'ro', 'ru', 'sa', 'rs', 'sg', 'sk', 'si', 'za', 'th', 'tr', 'ua', 'ae', 'uy', 'vu', 'cz', 'cl', 'ar', 'co', 'tw', 'bg', 'hr'];
+
+// Tier 3: Lower CPM ($0.50-2) - Developing markets
+const TIER3_COUNTRIES = ['in', 'id', 'br', 'vn', 'eg', 'pk', 'bd', 'ng', 'ke', 'gh', 'tz', 'ug', 'zw', 'zm', 'et', 'sd', 'dz', 'iq', 'ir', 'af', 'mm', 'kh', 'la', 'np', 'lk', 'cn', 'ec', 'bo', 've', 'gt', 'hn', 'sv', 'ni', 'cr', 'do', 'cu', 'jm', 'ht', 'tt', 'tn', 'ly', 'jo', 'lb', 'sy', 'ye', 'uz', 'tm', 'tj', 'kg', 'az', 'ge', 'am', 'by', 'md', 'al', 'mk', 'ba', 'xk'];
+
+type UserTier = 'tier1' | 'tier2' | 'tier3' | 'default' | 'loading';
 
 export default function GetKeyPage() {
   const [userTier, setUserTier] = useState<UserTier>('loading');
@@ -23,11 +29,16 @@ export default function GetKeyPage() {
         const country = data.country?.toLowerCase();
 
         if (country && TIER1_COUNTRIES.includes(country)) {
+          // Tier 1: Always show Rinku (best CPM)
           setUserTier('tier1');
         } else if (country && TIER2_COUNTRIES.includes(country)) {
-          // 50/50 chance for tier2
-          setUserTier(Math.random() < 0.5 ? 'tier1' : 'default');
+          // Tier 2: 50/50 chance - Rinku or Work.ink+Linkvertise
+          setUserTier(Math.random() < 0.5 ? 'tier1' : 'tier3');
+        } else if (country && TIER3_COUNTRIES.includes(country)) {
+          // Tier 3: Always show Work.ink + Linkvertise
+          setUserTier('tier3');
         } else {
+          // Unknown country: Default to Tier 3 behavior
           setUserTier('default');
         }
       } catch {
@@ -37,7 +48,10 @@ export default function GetKeyPage() {
     detectCountry();
   }, []);
 
+  // Show Rinku for Tier 1 users only
   const showRinku = userTier === 'tier1';
+  // Show Work.ink + Linkvertise for Tier 3 and default
+  const showWorkinkLinkvertise = userTier === 'tier3' || userTier === 'default';
 
   return (
     <>
@@ -220,8 +234,8 @@ export default function GetKeyPage() {
               </div>
             )}
 
-            {/* Work.ink Option - For Default/Tier 3 */}
-            {!showRinku && (
+            {/* Work.ink Option - For Tier 3/Default */}
+            {showWorkinkLinkvertise && (
               <div 
                 className="relative rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02]"
                 style={{
@@ -294,8 +308,8 @@ export default function GetKeyPage() {
               </div>
             )}
 
-            {/* Linkvertise Option - For Default/Tier 3 */}
-            {!showRinku && (
+            {/* Linkvertise Option - For Tier 3/Default */}
+            {showWorkinkLinkvertise && (
               <div 
                 className="relative rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02]"
                 style={{
