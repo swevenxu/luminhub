@@ -256,7 +256,7 @@ export default function TermsOfServicePage() {
             <ul className="space-y-3 text-gray-300 text-sm md:text-base" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
               <li className="flex items-start gap-2">
                 <span className="text-gray-500">•</span>
-                All services are provided on an "as is" basis, without warranties of any kind
+                All services are provided on an &quot;as is&quot; basis, without warranties of any kind
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-gray-500">•</span>
@@ -420,7 +420,7 @@ export default function TermsOfServicePage() {
             <ul className="space-y-3 text-gray-300 text-sm md:text-base" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
               <li className="flex items-start gap-2">
                 <span className="text-gray-500">•</span>
-                You must also comply with Luarmor's Terms of Service to utilize our products
+                You must also comply with Luarmor&apos;s Terms of Service to utilize our products
               </li>
             </ul>
           </div>
