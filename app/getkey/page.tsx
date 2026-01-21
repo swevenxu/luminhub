@@ -3,9 +3,12 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Button from '@/components/Button';
+import Navbar from '@/components/Navbar';
 
 export default function GetKeyPage() {
   return (
+    <>
+    <Navbar />
     <motion.main 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -109,6 +112,7 @@ export default function GetKeyPage() {
               size="md"
               className="w-full"
               style={{ fontFamily: "'Expose', sans-serif" }}
+              onClick={() => window.location.href = '/reseller'}
             >
               Get Lumin Lifetime
             </Button>
@@ -195,6 +199,7 @@ export default function GetKeyPage() {
               size="md"
               className="w-full"
               style={{ fontFamily: "'Expose', sans-serif" }}
+              onClick={() => window.open('https://ads.luarmor.net/get_key?for=Rinku-OessaHaIeAwd', '_blank')}
             >
               Get Free Key
             </Button>
@@ -250,6 +255,7 @@ export default function GetKeyPage() {
               size="md"
               className="!text-blue-400 hover:!text-blue-300 hover:!bg-blue-500/10"
               style={{ fontFamily: "'Expose', sans-serif" }}
+              onClick={() => window.open('https://www.youtube.com/shorts/LYV5VFRdDHU', '_blank')}
               rightIcon={
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -296,6 +302,7 @@ export default function GetKeyPage() {
               variant="ghost"
               size="md"
               style={{ fontFamily: "'Expose', sans-serif" }}
+              onClick={() => window.open('https://youtube.com/watch?v=GyTj_TDucnQ&feature=youtu.be', '_blank')}
               rightIcon={
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -432,11 +439,8 @@ export default function GetKeyPage() {
               © 2026 Lumin-Hub. All Rights Reserved.
             </p>
             <div className="flex items-center gap-6">
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
+              <a href="/tos" className="text-gray-400 hover:text-white text-sm transition-colors" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
                 Terms of Service
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
-                Privacy Policy
               </a>
               <a href="#discord" className="text-gray-400 hover:text-white transition-colors">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -448,5 +452,6 @@ export default function GetKeyPage() {
         </footer>
       </div>
     </motion.main>
+    </>
   );
 }

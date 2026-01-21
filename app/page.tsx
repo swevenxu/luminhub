@@ -1,15 +1,27 @@
 'use client';
 
+import React from 'react';
 import Image from 'next/image';
 import { Oswald, Inter } from 'next/font/google';
 import { motion } from 'framer-motion';
 import Button from '@/components/Button';
+import Navbar from '@/components/Navbar';
 
 const oswald = Oswald({ subsets: ['latin'], weight: '400' });
 const inter = Inter({ subsets: ['latin'] });
 
 export default function HomePage() {
+  const [copied, setCopied] = React.useState(false);
+
+  const handleCopyScript = () => {
+    navigator.clipboard.writeText('loadstring(game:HttpGet("http://luminon.top/loader.lua"))()');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
+    <>
+    <Navbar />
     <motion.main 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -31,8 +43,8 @@ export default function HomePage() {
       />
 
       <div className="container mx-auto px-4 sm:px-8 md:px-16 lg:px-32 pt-20 md:pt-32 lg:pt-40 relative z-10">
-        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
-          {/* Image - Shows first on mobile */}
+        <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
+          {/* Image - Shows after text on mobile, right side on desktop */}
           <div className="flex justify-center lg:order-last w-full">
             <Image
               src="/hero-image.png"
@@ -68,8 +80,9 @@ export default function HomePage() {
                 size="md"
                 className="font-medium"
                 style={{ fontFamily: "'Expose', sans-serif" }}
+                onClick={handleCopyScript}
               >
-                Get Script
+                {copied ? 'Copied!' : 'Get Script'}
               </Button>
             </div>
           </div>
@@ -89,7 +102,7 @@ export default function HomePage() {
           Featured <span style={{ color: '#8f21d1' }}>Games</span>
         </h2>
         
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 max-w-[300px] sm:max-w-none mx-auto">
           {/* Game Card 1 - Fish It */}
           <div 
             className="rounded-2xl overflow-hidden hover:scale-[1.02] transition-all duration-300 cursor-pointer group relative"
@@ -292,11 +305,8 @@ export default function HomePage() {
               © 2026 Lumin-Hub. All Rights Reserved.
             </p>
             <div className="flex items-center gap-6">
-              <a href="#terms" className="text-gray-400 hover:text-white transition-colors text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
+              <a href="/tos" className="text-gray-400 hover:text-white transition-colors text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
                 Terms of Service
-              </a>
-              <a href="#privacy" className="text-gray-400 hover:text-white transition-colors text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
-                Privacy Policy
               </a>
               <a href="https://discord.gg/luminhub" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -309,5 +319,6 @@ export default function HomePage() {
       </div>
 
     </motion.main>
+    </>
   );
 }

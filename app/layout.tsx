@@ -26,7 +26,6 @@ export default function RootLayout({
         <link href="https://api.fontshare.com/v2/css?f[]=switzer@400&f[]=plein@700&display=swap" rel="stylesheet" />
       </head>
       <body className={`${inter.className} overflow-x-hidden`}>
-        <Navbar />
         {children}
       </body>
     </html>

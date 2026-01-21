@@ -59,7 +59,9 @@ export default function Navbar() {
           
           {/* Desktop Buy Now Button */}
           <Link 
-            href="#buynow" 
+            href="https://sonar.gay/" 
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden md:block uppercase text-sm"
             style={{
               fontFamily: "'Expose', sans-serif",
@@ -126,7 +128,9 @@ export default function Navbar() {
                 Discord
               </Link>
               <Link 
-                href="#buynow" 
+                href="https://sonar.gay/" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-2 px-4 py-3 text-sm text-white text-center uppercase rounded-lg"
                 style={{
                   background: 'linear-gradient(135deg, rgba(127, 124, 255, 0.8), rgba(127, 124, 255, 0.6))',
