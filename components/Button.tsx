@@ -1,11 +1,7 @@
 'use client';
-
 import { motion } from 'framer-motion';
-
-// Button variants
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'glass' | 'glass-blue' | 'outline';
 type ButtonSize = 'sm' | 'md' | 'lg';
-
 interface ButtonProps {
   variant?: ButtonVariant;
   size?: ButtonSize;
@@ -19,7 +15,6 @@ interface ButtonProps {
   type?: 'button' | 'submit' | 'reset';
   style?: React.CSSProperties;
 }
-
 interface LinkButtonProps {
   variant?: ButtonVariant;
   size?: ButtonSize;
@@ -33,15 +28,11 @@ interface LinkButtonProps {
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   style?: React.CSSProperties;
 }
-
-// Size styles
 const sizeStyles: Record<ButtonSize, string> = {
   sm: 'px-4 py-2 text-xs',
   md: 'px-6 py-3 text-sm',
   lg: 'px-8 py-4 text-base',
 };
-
-// Loading spinner component
 const LoadingSpinner = () => (
   <svg
     className="animate-spin h-4 w-4"
@@ -64,14 +55,11 @@ const LoadingSpinner = () => (
     />
   </svg>
 );
-
-// Liquid glass styles for each variant
 const getLiquidGlassStyles = (variant: ButtonVariant): React.CSSProperties => {
   const baseGlass = {
     backdropFilter: 'blur(40px) saturate(180%)',
     WebkitBackdropFilter: 'blur(40px) saturate(180%)',
   };
-
   switch (variant) {
     case 'primary':
       return {
@@ -118,8 +106,6 @@ const getLiquidGlassStyles = (variant: ButtonVariant): React.CSSProperties => {
       return baseGlass;
   }
 };
-
-// Get text color class based on variant
 const getTextColorClass = (variant: ButtonVariant): string => {
   switch (variant) {
     case 'ghost':
@@ -130,8 +116,6 @@ const getTextColorClass = (variant: ButtonVariant): string => {
       return 'text-white';
   }
 };
-
-// Get combined class names
 function getButtonClasses(variant: ButtonVariant, size: ButtonSize, className?: string) {
   const baseStyles = `
     relative
@@ -144,7 +128,6 @@ function getButtonClasses(variant: ButtonVariant, size: ButtonSize, className?: 
     overflow-hidden
     group
   `;
-
   return `
     ${baseStyles}
     ${sizeStyles[size]}
@@ -152,8 +135,6 @@ function getButtonClasses(variant: ButtonVariant, size: ButtonSize, className?: 
     ${className || ''}
   `.trim().replace(/\s+/g, ' ');
 }
-
-// Button component
 function Button({
   variant = 'primary',
   size = 'md',
@@ -169,7 +150,6 @@ function Button({
 }: ButtonProps) {
   const combinedClassName = getButtonClasses(variant, size, className);
   const liquidGlassStyles = getLiquidGlassStyles(variant);
-
   return (
     <motion.button
       type={type}
@@ -193,8 +173,6 @@ function Button({
     </motion.button>
   );
 }
-
-// Link Button component (for anchor elements)
 function LinkButton({
   variant = 'primary',
   size = 'md',
@@ -210,7 +188,6 @@ function LinkButton({
 }: LinkButtonProps) {
   const combinedClassName = getButtonClasses(variant, size, className);
   const liquidGlassStyles = getLiquidGlassStyles(variant);
-
   return (
     <motion.a
       href={href}
@@ -229,7 +206,6 @@ function LinkButton({
     </motion.a>
   );
 }
-
 export default Button;
 export { LinkButton, LoadingSpinner };
 export type { ButtonProps, LinkButtonProps, ButtonVariant, ButtonSize };

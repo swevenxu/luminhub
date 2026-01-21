@@ -1,9 +1,7 @@
 'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-
 export default function TermsOfServicePage() {
   return (
     <motion.main 
@@ -14,7 +12,7 @@ export default function TermsOfServicePage() {
       className="min-h-screen relative overflow-hidden overflow-x-hidden" 
       style={{ backgroundColor: '#000000' }}
     >
-      {/* Custom TOS Navbar */}
+      
       <header 
         className="fixed top-0 left-0 right-0 z-50"
         style={{
@@ -25,16 +23,15 @@ export default function TermsOfServicePage() {
         }}
       >
         <div className="px-4 md:px-8 lg:px-16 py-3 md:py-4">
-          {/* Mobile: stacked, Desktop: side by side */}
+          
           <nav className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-0">
-            {/* Title */}
+            
             <div className="flex items-center gap-2">
               <span className="text-white font-medium" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>Lumin-Hub</span>
               <span className="text-gray-400" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>|</span>
               <span className="text-gray-400" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>Terms of Service</span>
             </div>
             
-            {/* Back to Home Button */}
             <Link 
               href="/"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm text-white transition-all hover:scale-105"
@@ -52,8 +49,7 @@ export default function TermsOfServicePage() {
           </nav>
         </div>
       </header>
-
-      {/* Grid Pattern Background */}
+      
       <div 
         className="absolute inset-0 opacity-60"
         style={{
@@ -64,11 +60,10 @@ export default function TermsOfServicePage() {
           backgroundSize: '25px 25px'
         }}
       />
-
       <div className="container mx-auto px-4 sm:px-8 md:px-16 lg:px-32 pt-28 md:pt-36 pb-12 md:pb-20 relative z-10">
-        {/* Header */}
+        
         <div className="text-center mb-10 md:mb-14">
-          {/* Logo */}
+          
           <div className="flex justify-center mb-6">
             <Image
               src="/logo.png"
@@ -81,7 +76,6 @@ export default function TermsOfServicePage() {
               }}
             />
           </div>
-          
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style={{ fontFamily: "'Plein', sans-serif", color: '#8f21d1' }}>
             Terms of Service
           </h1>
@@ -89,10 +83,9 @@ export default function TermsOfServicePage() {
             By accessing or utilizing any Lumin-Hub services, you acknowledge and agree to be bound by these terms and conditions.
           </p>
         </div>
-
-        {/* Terms Sections */}
+        
         <div className="max-w-3xl mx-auto space-y-6">
-          {/* Section 1 */}
+          
           <div 
             className="rounded-2xl p-6 md:p-8"
             style={{
@@ -132,8 +125,7 @@ export default function TermsOfServicePage() {
               </li>
             </ul>
           </div>
-
-          {/* Section 2 */}
+          
           <div 
             className="rounded-2xl p-6 md:p-8"
             style={{
@@ -168,8 +160,7 @@ export default function TermsOfServicePage() {
               </li>
             </ul>
           </div>
-
-          {/* Section 3 */}
+          
           <div 
             className="rounded-2xl p-6 md:p-8"
             style={{
@@ -200,8 +191,7 @@ export default function TermsOfServicePage() {
               </li>
             </ul>
           </div>
-
-          {/* Section 4 */}
+          
           <div 
             className="rounded-2xl p-6 md:p-8"
             style={{
@@ -232,8 +222,7 @@ export default function TermsOfServicePage() {
               </li>
             </ul>
           </div>
-
-          {/* Section 5 */}
+          
           <div 
             className="rounded-2xl p-6 md:p-8"
             style={{
@@ -264,8 +253,7 @@ export default function TermsOfServicePage() {
               </li>
             </ul>
           </div>
-
-          {/* Section 6 */}
+          
           <div 
             className="rounded-2xl p-6 md:p-8"
             style={{
@@ -300,8 +288,7 @@ export default function TermsOfServicePage() {
               </li>
             </ul>
           </div>
-
-          {/* Section 7 */}
+          
           <div 
             className="rounded-2xl p-6 md:p-8"
             style={{
@@ -336,8 +323,7 @@ export default function TermsOfServicePage() {
               </li>
             </ul>
           </div>
-
-          {/* Section 8 */}
+          
           <div 
             className="rounded-2xl p-6 md:p-8"
             style={{
@@ -364,8 +350,7 @@ export default function TermsOfServicePage() {
               </li>
             </ul>
           </div>
-
-          {/* Section 9 */}
+          
           <div 
             className="rounded-2xl p-6 md:p-8"
             style={{
@@ -396,8 +381,7 @@ export default function TermsOfServicePage() {
               </li>
             </ul>
           </div>
-
-          {/* Section 10 */}
+          
           <div 
             className="rounded-2xl p-6 md:p-8"
             style={{
@@ -425,8 +409,7 @@ export default function TermsOfServicePage() {
             </ul>
           </div>
         </div>
-
-        {/* Important Notice */}
+        
         <div 
           className="max-w-3xl mx-auto mt-10 rounded-2xl p-6 md:p-8 text-center"
           style={{
@@ -443,8 +426,7 @@ export default function TermsOfServicePage() {
             By purchasing or using any Lumin-Hub key, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not purchase or use our products.
           </p>
         </div>
-
-        {/* Footer */}
+        
         <footer className="mt-16 md:mt-20 text-center">
           <p className="text-gray-400 text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
             © 2026 Lumin-Hub. All Rights Reserved.

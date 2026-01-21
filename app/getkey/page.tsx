@@ -1,44 +1,28 @@
 'use client';
-
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Button from '@/components/Button';
 import Navbar from '@/components/Navbar';
-
-// Country tiers for ad targeting (based on CPM rates)
-// Tier 1: Highest CPM ($5-15+) - Premium markets
 const TIER1_COUNTRIES = ['au', 'at', 'be', 'ca', 'dk', 'fi', 'fr', 'de', 'ie', 'it', 'lu', 'nl', 'nz', 'no', 'es', 'se', 'ch', 'uk', 'gb', 'us'];
-
-// Tier 2: Medium CPM ($2-5) - Developed/emerging markets
 const TIER2_COUNTRIES = ['ee', 'fj', 'gr', 'gy', 'hk', 'hu', 'is', 'il', 'jp', 'kz', 'lv', 'lt', 'mo', 'my', 'mt', 'mx', 'me', 'ma', 'om', 'pa', 'py', 'pe', 'ph', 'pl', 'pt', 'pr', 'qa', 'kr', 'ro', 'ru', 'sa', 'rs', 'sg', 'sk', 'si', 'za', 'th', 'tr', 'ua', 'ae', 'uy', 'vu', 'cz', 'cl', 'ar', 'co', 'tw', 'bg', 'hr'];
-
-// Tier 3: Lower CPM ($0.50-2) - Developing markets
 const TIER3_COUNTRIES = ['in', 'id', 'br', 'vn', 'eg', 'pk', 'bd', 'ng', 'ke', 'gh', 'tz', 'ug', 'zw', 'zm', 'et', 'sd', 'dz', 'iq', 'ir', 'af', 'mm', 'kh', 'la', 'np', 'lk', 'cn', 'ec', 'bo', 've', 'gt', 'hn', 'sv', 'ni', 'cr', 'do', 'cu', 'jm', 'ht', 'tt', 'tn', 'ly', 'jo', 'lb', 'sy', 'ye', 'uz', 'tm', 'tj', 'kg', 'az', 'ge', 'am', 'by', 'md', 'al', 'mk', 'ba', 'xk'];
-
 type UserTier = 'tier1' | 'tier2' | 'tier3' | 'default' | 'loading';
-
 export default function GetKeyPage() {
   const [userTier, setUserTier] = useState<UserTier>('loading');
-
   useEffect(() => {
     async function detectCountry() {
       try {
         const res = await fetch('https://api.country.is/');
         const data = await res.json();
         const country = data.country?.toLowerCase();
-
         if (country && TIER1_COUNTRIES.includes(country)) {
-          // Tier 1: Always show Rinku (best CPM)
           setUserTier('tier1');
         } else if (country && TIER2_COUNTRIES.includes(country)) {
-          // Tier 2: 50/50 chance - Rinku or Work.ink+Linkvertise
           setUserTier(Math.random() < 0.5 ? 'tier1' : 'tier3');
         } else if (country && TIER3_COUNTRIES.includes(country)) {
-          // Tier 3: Always show Work.ink + Linkvertise
           setUserTier('tier3');
         } else {
-          // Unknown country: Default to Tier 3 behavior
           setUserTier('default');
         }
       } catch {
@@ -47,12 +31,8 @@ export default function GetKeyPage() {
     }
     detectCountry();
   }, []);
-
-  // Show Rinku for Tier 1 users only
   const showRinku = userTier === 'tier1';
-  // Show Work.ink + Linkvertise for Tier 3 and default
   const showWorkinkLinkvertise = userTier === 'tier3' || userTier === 'default';
-
   return (
     <>
     <Navbar />
@@ -64,7 +44,7 @@ export default function GetKeyPage() {
       className="min-h-screen relative overflow-hidden overflow-x-hidden" 
       style={{ backgroundColor: '#000000' }}
     >
-      {/* Grid Pattern Background */}
+      
       <div 
         className="absolute inset-0 opacity-60"
         style={{
@@ -75,9 +55,8 @@ export default function GetKeyPage() {
           backgroundSize: '25px 25px'
         }}
       />
-
       <div className="container mx-auto px-4 sm:px-8 md:px-16 lg:px-32 pt-24 md:pt-40 pb-12 md:pb-20 relative z-10">
-        {/* Header */}
+        
         <div className="text-center mb-8 md:mb-16">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4" style={{ fontFamily: "'Plein', sans-serif" }}>
             Get Your <span style={{ color: '#8f21d1' }}>Lumin Key</span>
@@ -91,18 +70,16 @@ export default function GetKeyPage() {
             </p>
           )}
         </div>
-
-        {/* Loading State */}
+        
         {userTier === 'loading' && (
           <div className="flex justify-center items-center py-20">
             <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-purple-500"></div>
           </div>
         )}
-
-        {/* Key Options */}
+        
         {userTier !== 'loading' && (
           <div className={`grid grid-cols-1 ${showRinku ? 'md:grid-cols-2 max-w-3xl' : 'md:grid-cols-3 max-w-5xl'} gap-4 md:gap-6 mb-16 md:mb-32 mx-auto`}>
-            {/* Lifetime Option - Always shown */}
+            
             <div 
               className="relative rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02]"
               style={{
@@ -120,7 +97,6 @@ export default function GetKeyPage() {
               }}>
                 RECOMMENDED
               </div>
-              
               <div className="flex items-center justify-center w-14 h-14 rounded-xl mx-auto mb-4" style={{
                 background: 'rgba(138, 43, 196, 0.2)',
                 backdropFilter: 'blur(10px)'
@@ -129,11 +105,9 @@ export default function GetKeyPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
               </div>
-
               <h3 className="text-xl font-bold text-white text-center mb-4" style={{ fontFamily: "'Khand', sans-serif" }}>
                 Lumin Lifetime
               </h3>
-
               <ul className="space-y-2 mb-6">
                 <li className="flex items-center gap-2 text-gray-200 text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
                   <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(138, 43, 196, 0.2)' }}>
@@ -152,7 +126,6 @@ export default function GetKeyPage() {
                   No Ads
                 </li>
               </ul>
-
               <Button 
                 variant="glass"
                 size="md"
@@ -163,8 +136,7 @@ export default function GetKeyPage() {
                 Get Lumin Lifetime
               </Button>
             </div>
-
-            {/* Rinku Option - For Tier 1 */}
+            
             {showRinku && (
               <div 
                 className="relative rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02]"
@@ -183,7 +155,6 @@ export default function GetKeyPage() {
                 }}>
                   RINKU
                 </div>
-                
                 <div className="flex items-center justify-center mx-auto mb-4 h-14">
                   <Image
                     src="https://rinku.pro/asibye/auth/img/logowhite.svg"
@@ -194,7 +165,6 @@ export default function GetKeyPage() {
                     style={{ filter: 'drop-shadow(0 4px 12px rgba(59, 130, 246, 0.3))' }}
                   />
                 </div>
-
                 <ul className="space-y-2 mb-6">
                   <li className="flex items-center gap-2 text-gray-200 text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
                     <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(59, 130, 246, 0.2)' }}>
@@ -221,7 +191,6 @@ export default function GetKeyPage() {
                     Fast &amp; Reliable
                   </li>
                 </ul>
-
                 <Button 
                   variant="glass-blue"
                   size="md"
@@ -233,8 +202,7 @@ export default function GetKeyPage() {
                 </Button>
               </div>
             )}
-
-            {/* Work.ink Option - For Tier 3/Default */}
+            
             {showWorkinkLinkvertise && (
               <div 
                 className="relative rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02]"
@@ -253,7 +221,6 @@ export default function GetKeyPage() {
                 }}>
                   WORK.INK
                 </div>
-                
                 <div className="flex items-center justify-center mx-auto mb-4 h-14">
                   <Image
                     src="/workink-logo.png"
@@ -264,7 +231,6 @@ export default function GetKeyPage() {
                     style={{ filter: 'drop-shadow(0 4px 12px rgba(34, 197, 94, 0.3))' }}
                   />
                 </div>
-
                 <ul className="space-y-2 mb-6">
                   <li className="flex items-center gap-2 text-gray-200 text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
                     <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(34, 197, 94, 0.2)' }}>
@@ -291,7 +257,6 @@ export default function GetKeyPage() {
                     Reliable Service
                   </li>
                 </ul>
-
                 <Button 
                   variant="glass"
                   size="md"
@@ -307,8 +272,7 @@ export default function GetKeyPage() {
                 </Button>
               </div>
             )}
-
-            {/* Linkvertise Option - For Tier 3/Default */}
+            
             {showWorkinkLinkvertise && (
               <div 
                 className="relative rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02]"
@@ -327,7 +291,6 @@ export default function GetKeyPage() {
                 }}>
                   LINKVERTISE
                 </div>
-                
                 <div className="flex items-center justify-center mx-auto mb-4 h-14">
                   <Image
                     src="https://linkvertise.com/assets/img/linkvertise_logo_big.svg"
@@ -338,7 +301,6 @@ export default function GetKeyPage() {
                     style={{ filter: 'drop-shadow(0 4px 12px rgba(249, 115, 22, 0.3))' }}
                   />
                 </div>
-
                 <ul className="space-y-2 mb-6">
                   <li className="flex items-center gap-2 text-gray-200 text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
                     <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(249, 115, 22, 0.2)' }}>
@@ -365,7 +327,6 @@ export default function GetKeyPage() {
                     Wide Availability
                   </li>
                 </ul>
-
                 <Button 
                   variant="glass"
                   size="md"
@@ -383,8 +344,7 @@ export default function GetKeyPage() {
             )}
           </div>
         )}
-
-        {/* Rinku Tutorials Section - Only for Tier 1 */}
+        
         {showRinku && (
           <>
             <div className="text-center mb-8 md:mb-12">
@@ -395,9 +355,8 @@ export default function GetKeyPage() {
                 Need help with Rinku? Check out our step-by-step guides
               </p>
             </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-3xl mx-auto mb-16 md:mb-32">
-              {/* Mobile Tutorial */}
+              
               <div 
                 className="relative rounded-3xl p-8 transition-all duration-300 hover:scale-[1.02] text-center cursor-pointer"
                 style={{
@@ -435,8 +394,7 @@ export default function GetKeyPage() {
                   Watch Video
                 </Button>
               </div>
-
-              {/* PC Tutorial */}
+              
               <div 
                 className="relative rounded-3xl p-8 transition-all duration-300 hover:scale-[1.02] text-center cursor-pointer"
                 style={{
@@ -477,8 +435,7 @@ export default function GetKeyPage() {
             </div>
           </>
         )}
-
-        {/* Why Choose Lumin Lifetime Section */}
+        
         {userTier !== 'loading' && (
           <>
             <div className="text-center mb-8 md:mb-12">
@@ -486,9 +443,8 @@ export default function GetKeyPage() {
                 Why Choose <span style={{ color: '#8f21d1' }}>Lumin</span> Lifetime?
               </h2>
             </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
-              {/* Lightning Fast */}
+              
               <div 
                 className="relative rounded-3xl p-8 transition-all duration-300 hover:scale-[1.02] text-center"
                 style={{
@@ -513,8 +469,7 @@ export default function GetKeyPage() {
                   Get your key instantly after purchase. No waiting, no delays.
                 </p>
               </div>
-
-              {/* VIP Support */}
+              
               <div 
                 className="relative rounded-3xl p-8 transition-all duration-300 hover:scale-[1.02] text-center"
                 style={{
@@ -539,8 +494,7 @@ export default function GetKeyPage() {
                   Exclusive access to priority support with fast response times.
                 </p>
               </div>
-
-              {/* Ad-Free Experience */}
+              
               <div 
                 className="relative rounded-3xl p-8 transition-all duration-300 hover:scale-[1.02] text-center"
                 style={{
@@ -568,8 +522,7 @@ export default function GetKeyPage() {
             </div>
           </>
         )}
-
-        {/* Footer */}
+        
         <footer 
           className="mt-16 md:mt-32 py-6 md:py-8 rounded-2xl md:rounded-3xl"
           style={{

@@ -1,15 +1,11 @@
 'use client';
-
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Oswald } from 'next/font/google';
-
 const oswald = Oswald({ subsets: ['latin'], weight: '400' });
-
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
     <header 
       className="fixed top-0 left-0 right-0 z-50"
@@ -22,7 +18,7 @@ export default function Navbar() {
     >
       <div className="px-4 md:px-8 lg:px-16 py-3 md:py-4">
         <nav className="flex items-center justify-between">
-          {/* Logo */}
+          
           <Link href="/" className="flex-shrink-0">
             <Image
               src="/logo.png"
@@ -33,7 +29,6 @@ export default function Navbar() {
             />
           </Link>
           
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8" style={{ fontFamily: "'Expose', sans-serif" }}>
             <Link 
               href="/" 
@@ -57,7 +52,6 @@ export default function Navbar() {
             </Link>
           </div>
           
-          {/* Desktop Buy Now Button */}
           <Link 
             href="https://sonar.gay/" 
             target="_blank"
@@ -78,8 +72,7 @@ export default function Navbar() {
           >
             Buy Now
           </Link>
-
-          {/* Mobile Menu Button */}
+          
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden p-2 text-white"
@@ -96,8 +89,7 @@ export default function Navbar() {
             )}
           </button>
         </nav>
-
-        {/* Mobile Menu */}
+        
         {isMenuOpen && (
           <div 
             className="md:hidden mt-4 pb-4 border-t border-white/10 pt-4"

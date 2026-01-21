@@ -1,24 +1,19 @@
 'use client';
-
 import React from 'react';
 import Image from 'next/image';
 import { Oswald, Inter } from 'next/font/google';
 import { motion } from 'framer-motion';
 import Button from '@/components/Button';
 import Navbar from '@/components/Navbar';
-
 const oswald = Oswald({ subsets: ['latin'], weight: '400' });
 const inter = Inter({ subsets: ['latin'] });
-
 export default function HomePage() {
   const [copied, setCopied] = React.useState(false);
-
   const handleCopyScript = () => {
     navigator.clipboard.writeText('loadstring(game:HttpGet("http://luminon.top/loader.lua"))()');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-
   return (
     <>
     <Navbar />
@@ -30,7 +25,7 @@ export default function HomePage() {
       className="min-h-screen relative overflow-hidden overflow-x-hidden" 
       style={{ backgroundColor: '#000000' }}
     >
-      {/* Grid Pattern Background */}
+      
       <div 
         className="absolute inset-0 opacity-60"
         style={{
@@ -41,10 +36,9 @@ export default function HomePage() {
           backgroundSize: '25px 25px'
         }}
       />
-
       <div className="container mx-auto px-4 sm:px-8 md:px-16 lg:px-32 pt-20 md:pt-32 lg:pt-40 relative z-10">
         <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
-          {/* Image - Shows after text on mobile, right side on desktop */}
+          
           <div className="flex justify-center lg:order-last w-full">
             <Image
               src="/hero-image.png"
@@ -58,8 +52,7 @@ export default function HomePage() {
               }}
             />
           </div>
-
-          {/* Text Content */}
+          
           <div className="text-white text-center lg:text-left">
             <h1 
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-6 uppercase"
@@ -88,8 +81,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-
-      {/* Featured Games Section */}
+      
       <div className="container mx-auto px-4 sm:px-8 md:px-16 lg:px-32 py-12 md:py-20 relative z-10">
         <h2 
           className="text-2xl md:text-4xl font-bold text-white mb-8 md:mb-12 uppercase text-center md:text-left"
@@ -101,9 +93,8 @@ export default function HomePage() {
         >
           Featured <span style={{ color: '#8f21d1' }}>Games</span>
         </h2>
-        
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 max-w-[300px] sm:max-w-none mx-auto">
-          {/* Game Card 1 - Fish It */}
+          
           <div 
             className="rounded-2xl overflow-hidden hover:scale-[1.02] transition-all duration-300 cursor-pointer group relative"
             style={{
@@ -126,8 +117,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-
-          {/* Game Card 2 - Forsaken */}
+          
           <div 
             className="rounded-2xl overflow-hidden hover:scale-[1.02] transition-all duration-300 cursor-pointer group relative"
             style={{
@@ -150,8 +140,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-
-          {/* Game Card 3 - Grow a Garden */}
+          
           <div 
             className="rounded-2xl overflow-hidden hover:scale-[1.02] transition-all duration-300 cursor-pointer group relative"
             style={{
@@ -174,8 +163,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-
-          {/* Game Card 4 - Hunty Zombie */}
+          
           <div 
             className="rounded-2xl overflow-hidden hover:scale-[1.02] transition-all duration-300 cursor-pointer group relative"
             style={{
@@ -198,8 +186,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-
-          {/* Game Card 5 - SAB */}
+          
           <div 
             className="rounded-2xl overflow-hidden hover:scale-[1.02] transition-all duration-300 cursor-pointer group relative"
             style={{
@@ -224,11 +211,10 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-
-      {/* Stats Section */}
+      
       <div className="container mx-auto px-4 sm:px-8 md:px-16 lg:px-32 pb-12 md:pb-20 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-8">
-          {/* Stat Card 1 */}
+          
           <div 
             className="rounded-2xl p-6 hover:scale-[1.02] transition-all duration-300 text-center"
             style={{
@@ -247,8 +233,7 @@ export default function HomePage() {
             <h3 className="text-3xl font-bold text-white mb-1" style={{ fontFamily: "'Khand', sans-serif" }}>4.5K+</h3>
             <p className="text-gray-400 text-xs uppercase tracking-wider" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>Active Members</p>
           </div>
-
-          {/* Stat Card 2 */}
+          
           <div 
             className="rounded-2xl p-6 hover:scale-[1.02] transition-all duration-300 text-center"
             style={{
@@ -267,8 +252,7 @@ export default function HomePage() {
             <h3 className="text-3xl font-bold text-white mb-1" style={{ fontFamily: "'Khand', sans-serif" }}>100%</h3>
             <p className="text-gray-400 text-xs uppercase tracking-wider" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>Uptime</p>
           </div>
-
-          {/* Stat Card 3 */}
+          
           <div 
             className="rounded-2xl p-6 hover:scale-[1.02] transition-all duration-300 text-center"
             style={{
@@ -288,8 +272,7 @@ export default function HomePage() {
             <p className="text-gray-400 text-xs uppercase tracking-wider" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>Supported Games</p>
           </div>
         </div>
-
-        {/* Footer */}
+        
         <div 
           className="mt-8 md:mt-16 rounded-2xl md:rounded-3xl py-6 md:py-8 px-4 md:px-8"
           style={{
@@ -317,7 +300,6 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-
     </motion.main>
     </>
   );

@@ -1,10 +1,8 @@
 'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Button from '@/components/Button';
-
 export default function ResellerPage() {
   return (
     <motion.main 
@@ -15,7 +13,7 @@ export default function ResellerPage() {
       className="min-h-screen relative overflow-hidden overflow-x-hidden" 
       style={{ backgroundColor: '#000000' }}
     >
-      {/* Navbar */}
+      
       <header 
         className="fixed top-0 left-0 right-0 z-50"
         style={{
@@ -27,7 +25,7 @@ export default function ResellerPage() {
       >
         <div className="px-4 md:px-8 lg:px-16 py-3 md:py-4">
           <nav className="flex items-center justify-between">
-            {/* Logo */}
+            
             <Link href="/" className="flex items-center">
               <Image
                 src="/logo.png"
@@ -38,7 +36,6 @@ export default function ResellerPage() {
               />
             </Link>
             
-            {/* Back to Home Button */}
             <Link 
               href="/"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm text-white transition-all hover:scale-105"
@@ -56,8 +53,7 @@ export default function ResellerPage() {
           </nav>
         </div>
       </header>
-
-      {/* Grid Pattern Background */}
+      
       <div 
         className="absolute inset-0 opacity-60"
         style={{
@@ -68,11 +64,10 @@ export default function ResellerPage() {
           backgroundSize: '25px 25px'
         }}
       />
-
       <div className="container mx-auto px-4 sm:px-8 md:px-16 lg:px-32 pt-24 md:pt-40 pb-12 md:pb-20 relative z-10">
-        {/* Header */}
+        
         <div className="text-center mb-12 md:mb-16">
-          {/* Logo */}
+          
           <div className="flex justify-center mb-6">
             <Image
               src="/logo.png"
@@ -85,7 +80,6 @@ export default function ResellerPage() {
               }}
             />
           </div>
-          
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2" style={{ fontFamily: "'Plein', sans-serif" }}>
             Official
           </h1>
@@ -96,10 +90,9 @@ export default function ResellerPage() {
             Choose your preferred payment method and reseller for Lumin-Hub access.
           </p>
         </div>
-
-        {/* Reseller Cards */}
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
-          {/* Sonar.gay - Official */}
+          
           <div 
             className="relative rounded-3xl p-6 md:p-8 transition-all duration-300 hover:scale-[1.02]"
             style={{
@@ -114,7 +107,7 @@ export default function ResellerPage() {
               `
             }}
           >
-            {/* Icon */}
+            
             <div className="flex items-center justify-center w-16 h-16 rounded-xl mx-auto mb-4" style={{
               background: 'rgba(249, 115, 22, 0.15)',
               border: '1px solid rgba(249, 115, 22, 0.3)'
@@ -123,8 +116,7 @@ export default function ResellerPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
               </svg>
             </div>
-
-            {/* Badge */}
+            
             <div className="flex justify-center mb-3">
               <span className="px-3 py-1 rounded-full text-xs font-bold uppercase" style={{
                 fontFamily: "'Expose', sans-serif",
@@ -135,18 +127,15 @@ export default function ResellerPage() {
                 Official
               </span>
             </div>
-
-            {/* Name */}
+            
             <h3 className="text-2xl font-bold text-white text-center mb-2" style={{ fontFamily: "'Khand', sans-serif" }}>
               Sonar.gay
             </h3>
-
-            {/* Description */}
+            
             <p className="text-gray-400 text-center text-sm mb-6" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
               Official website with crypto payment
             </p>
-
-            {/* Payment Methods */}
+            
             <p className="text-gray-500 text-xs uppercase tracking-wider text-center mb-3" style={{ fontFamily: "'Expose', sans-serif" }}>
               Payment Methods
             </p>
@@ -159,8 +148,7 @@ export default function ResellerPage() {
                 Crypto
               </span>
             </div>
-
-            {/* CTA Button */}
+            
             <Button 
               variant="primary"
               size="md"
@@ -180,8 +168,7 @@ export default function ResellerPage() {
               Visit Sonar.gay
             </Button>
           </div>
-
-          {/* BloxProducts - Reseller */}
+          
           <div 
             className="relative rounded-3xl p-6 md:p-8 transition-all duration-300 hover:scale-[1.02]"
             style={{
@@ -196,7 +183,7 @@ export default function ResellerPage() {
               `
             }}
           >
-            {/* Icon */}
+            
             <div className="flex items-center justify-center w-16 h-16 rounded-xl mx-auto mb-4" style={{
               background: 'rgba(239, 68, 68, 0.15)',
               border: '1px solid rgba(239, 68, 68, 0.3)'
@@ -205,8 +192,7 @@ export default function ResellerPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
-
-            {/* Badge */}
+            
             <div className="flex justify-center mb-3">
               <span className="px-3 py-1 rounded-full text-xs font-bold uppercase" style={{
                 fontFamily: "'Expose', sans-serif",
@@ -217,18 +203,15 @@ export default function ResellerPage() {
                 Reseller
               </span>
             </div>
-
-            {/* Name */}
+            
             <h3 className="text-2xl font-bold text-white text-center mb-2" style={{ fontFamily: "'Khand', sans-serif" }}>
               BloxProducts
             </h3>
-
-            {/* Description */}
+            
             <p className="text-gray-400 text-center text-sm mb-6" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
               Trusted source in software distribution
             </p>
-
-            {/* Payment Methods */}
+            
             <p className="text-gray-500 text-xs uppercase tracking-wider text-center mb-3" style={{ fontFamily: "'Expose', sans-serif" }}>
               Payment Methods
             </p>
@@ -276,8 +259,7 @@ export default function ResellerPage() {
                 Robux
               </span>
             </div>
-
-            {/* CTA Button */}
+            
             <Button 
               variant="primary"
               size="md"
@@ -298,8 +280,7 @@ export default function ResellerPage() {
             </Button>
           </div>
         </div>
-
-        {/* Footer */}
+        
         <footer 
           className="mt-16 md:mt-32 py-6 md:py-8 rounded-2xl md:rounded-3xl"
           style={{
