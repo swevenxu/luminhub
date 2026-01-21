@@ -1,16 +1,18 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
-import { Oswald, Inter } from 'next/font/google';
 import { motion } from 'framer-motion';
 import Button from '@/components/Button';
 import Navbar from '@/components/Navbar';
-const oswald = Oswald({ subsets: ['latin'], weight: '400' });
-const inter = Inter({ subsets: ['latin'] });
+
+const scriptUrl = 'loadstring(game:HttpGet("http://luminon.top/loader.lua"))()';
+
 export default function HomePage() {
-  const [copied, setCopied] = React.useState(false);
-  const handleCopyScript = () => {
-    navigator.clipboard.writeText('loadstring(game:HttpGet("http://luminon.top/loader.lua"))()');
+  const [copied, setCopied] = useState(false);
+  
+  // copy script to clipboard
+  const copyScript = () => {
+    navigator.clipboard.writeText(scriptUrl);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -73,7 +75,7 @@ export default function HomePage() {
                 size="md"
                 className="font-medium"
                 style={{ fontFamily: "'Expose', sans-serif" }}
-                onClick={handleCopyScript}
+                onClick={copyScript}
               >
                 {copied ? 'Copied!' : 'Get Script'}
               </Button>

@@ -2,7 +2,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-export default function TermsOfServicePage() {
+
+export default function TosPage() {
   return (
     <motion.main 
       initial={{ opacity: 0, y: 20 }}

@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Button from '@/components/Button';
+
+// reseller page for purchasing lifetime keys
 export default function ResellerPage() {
   return (
     <motion.main 

@@ -4,32 +4,29 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Button from '@/components/Button';
 import Navbar from '@/components/Navbar';
-const TIER1_COUNTRIES = ['au', 'at', 'be', 'ca', 'dk', 'fi', 'fr', 'de', 'ie', 'it', 'lu', 'nl', 'nz', 'no', 'es', 'se', 'ch', 'uk', 'gb', 'us'];
-const TIER2_COUNTRIES = ['ee', 'fj', 'gr', 'gy', 'hk', 'hu', 'is', 'il', 'jp', 'kz', 'lv', 'lt', 'mo', 'my', 'mt', 'mx', 'me', 'ma', 'om', 'pa', 'py', 'pe', 'ph', 'pl', 'pt', 'pr', 'qa', 'kr', 'ro', 'ru', 'sa', 'rs', 'sg', 'sk', 'si', 'za', 'th', 'tr', 'ua', 'ae', 'uy', 'vu', 'cz', 'cl', 'ar', 'co', 'tw', 'bg', 'hr'];
-const TIER3_COUNTRIES = ['in', 'id', 'br', 'vn', 'eg', 'pk', 'bd', 'ng', 'ke', 'gh', 'tz', 'ug', 'zw', 'zm', 'et', 'sd', 'dz', 'iq', 'ir', 'af', 'mm', 'kh', 'la', 'np', 'lk', 'cn', 'ec', 'bo', 've', 'gt', 'hn', 'sv', 'ni', 'cr', 'do', 'cu', 'jm', 'ht', 'tt', 'tn', 'ly', 'jo', 'lb', 'sy', 'ye', 'uz', 'tm', 'tj', 'kg', 'az', 'ge', 'am', 'by', 'md', 'al', 'mk', 'ba', 'xk'];
-type UserTier = 'tier1' | 'tier2' | 'tier3' | 'default' | 'loading';
+// country lists for geo targeting
+const tier1Countries = ['au', 'at', 'be', 'ca', 'dk', 'fi', 'fr', 'de', 'ie', 'it', 'lu', 'nl', 'nz', 'no', 'es', 'se', 'ch', 'uk', 'gb', 'us'];
+const tier2Countries = ['ee', 'fj', 'gr', 'gy', 'hk', 'hu', 'is', 'il', 'jp', 'kz', 'lv', 'lt', 'mo', 'my', 'mt', 'mx', 'me', 'ma', 'om', 'pa', 'py', 'pe', 'ph', 'pl', 'pt', 'pr', 'qa', 'kr', 'ro', 'ru', 'sa', 'rs', 'sg', 'sk', 'si', 'za', 'th', 'tr', 'ua', 'ae', 'uy', 'vu', 'cz', 'cl', 'ar', 'co', 'tw', 'bg', 'hr'];
+const tier3Countries = ['in', 'id', 'br', 'vn', 'eg', 'pk', 'bd', 'ng', 'ke', 'gh', 'tz', 'ug', 'zw', 'zm', 'et', 'sd', 'dz', 'iq', 'ir', 'af', 'mm', 'kh', 'la', 'np', 'lk', 'cn', 'ec', 'bo', 've', 'gt', 'hn', 'sv', 'ni', 'cr', 'do', 'cu', 'jm', 'ht', 'tt', 'tn', 'ly', 'jo', 'lb', 'sy', 'ye', 'uz', 'tm', 'tj', 'kg', 'az', 'ge', 'am', 'by', 'md', 'al', 'mk', 'ba', 'xk'];
 export default function GetKeyPage() {
-  const [userTier, setUserTier] = useState<UserTier>('loading');
+  const [userTier, setUserTier] = useState<string>('loading');
+  
   useEffect(() => {
-    async function detectCountry() {
-      try {
-        const res = await fetch('https://api.country.is/');
-        const data = await res.json();
+    fetch('https://api.country.is/')
+      .then(res => res.json())
+      .then(data => {
         const country = data.country?.toLowerCase();
-        if (country && TIER1_COUNTRIES.includes(country)) {
+        if (country && tier1Countries.includes(country)) {
           setUserTier('tier1');
-        } else if (country && TIER2_COUNTRIES.includes(country)) {
+        } else if (country && tier2Countries.includes(country)) {
           setUserTier(Math.random() < 0.5 ? 'tier1' : 'tier3');
-        } else if (country && TIER3_COUNTRIES.includes(country)) {
+        } else if (country && tier3Countries.includes(country)) {
           setUserTier('tier3');
         } else {
           setUserTier('default');
         }
-      } catch {
-        setUserTier('default');
-      }
-    }
-    detectCountry();
+      })
+      .catch(() => setUserTier('default'));
   }, []);
   const showRinku = userTier === 'tier1';
   const showWorkinkLinkvertise = userTier === 'tier3' || userTier === 'default';
