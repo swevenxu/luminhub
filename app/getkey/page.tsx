@@ -87,7 +87,7 @@ export default function GetKeyPage() {
 
         {/* Key Options */}
         {userTier !== 'loading' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-16 md:mb-32 max-w-3xl mx-auto">
+          <div className={`grid grid-cols-1 ${showRinku ? 'md:grid-cols-2 max-w-3xl' : 'md:grid-cols-3 max-w-5xl'} gap-4 md:gap-6 mb-16 md:mb-32 mx-auto`}>
             {/* Lifetime Option - Always shown */}
             <div 
               className="relative rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02]"
@@ -288,6 +288,80 @@ export default function GetKeyPage() {
                     border: '1px solid rgba(34, 197, 94, 0.3)'
                   }}
                   onClick={() => window.open('https://ads.luarmor.net/get_key?for=Lumin-dFQuGFpeaJAm', '_blank')}
+                >
+                  Get Free Key
+                </Button>
+              </div>
+            )}
+
+            {/* Linkvertise Option - For Default/Tier 3 */}
+            {!showRinku && (
+              <div 
+                className="relative rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02]"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02))',
+                  backdropFilter: 'blur(40px) saturate(180%)',
+                  WebkitBackdropFilter: 'blur(40px) saturate(180%)',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.1)'
+                }}
+              >
+                <div className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs text-white" style={{ 
+                  fontFamily: "'Expose', sans-serif",
+                  background: 'rgba(249, 115, 22, 0.3)',
+                  backdropFilter: 'blur(10px)'
+                }}>
+                  LINKVERTISE
+                </div>
+                
+                <div className="flex items-center justify-center mx-auto mb-4 h-14">
+                  <Image
+                    src="https://linkvertise.com/assets/img/linkvertise_logo_big.svg"
+                    alt="Linkvertise"
+                    width={120}
+                    height={50}
+                    className="h-10 w-auto object-contain"
+                    style={{ filter: 'drop-shadow(0 4px 12px rgba(249, 115, 22, 0.3))' }}
+                  />
+                </div>
+
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center gap-2 text-gray-200 text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(249, 115, 22, 0.2)' }}>
+                      <svg className="w-3 h-3 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    Easy to Use
+                  </li>
+                  <li className="flex items-center gap-2 text-gray-200 text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(249, 115, 22, 0.2)' }}>
+                      <svg className="w-3 h-3 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    Cooldown Period
+                  </li>
+                  <li className="flex items-center gap-2 text-gray-200 text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(249, 115, 22, 0.2)' }}>
+                      <svg className="w-3 h-3 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    Wide Availability
+                  </li>
+                </ul>
+
+                <Button 
+                  variant="glass"
+                  size="md"
+                  className="w-full"
+                  style={{ 
+                    fontFamily: "'Expose', sans-serif",
+                    background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.3), rgba(234, 88, 12, 0.2))',
+                    border: '1px solid rgba(249, 115, 22, 0.3)'
+                  }}
+                  onClick={() => window.open('https://ads.luarmor.net/get_key?for=Linkvertise-FxRZfrMeBswV', '_blank')}
                 >
                   Get Free Key
                 </Button>
