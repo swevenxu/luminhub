@@ -8,6 +8,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Lumin Hub",
   description: "Your gateway to innovation",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({

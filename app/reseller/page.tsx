@@ -151,24 +151,22 @@ export default function ResellerPage() {
               </span>
             </div>
             
-            <Button 
-              variant="primary"
-              size="md"
-              className="w-full"
+            <a 
+              href="https://sonar.gay"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg text-sm text-white transition-all hover:scale-105"
               style={{ 
                 fontFamily: "'Expose', sans-serif",
-                background: 'linear-gradient(135deg, #f97316, #ea580c)',
-                boxShadow: '0 8px 32px rgba(249, 115, 22, 0.4)'
+                background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.4), rgba(234, 88, 12, 0.3))',
+                border: '1px solid rgba(249, 115, 22, 0.4)',
               }}
-              onClick={() => window.open('https://sonar.gay', '_blank')}
-              rightIcon={
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              }
             >
               Visit Sonar.gay
-            </Button>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
           </div>
           
           <div 
@@ -186,21 +184,22 @@ export default function ResellerPage() {
             }}
           >
             
-            <div className="flex items-center justify-center w-16 h-16 rounded-xl mx-auto mb-4" style={{
-              background: 'rgba(239, 68, 68, 0.15)',
-              border: '1px solid rgba(239, 68, 68, 0.3)'
-            }}>
-              <svg className="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
+            <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4">
+              <Image
+                src="/blox.png"
+                alt="BloxProducts"
+                width={64}
+                height={64}
+                className="rounded-xl object-contain"
+              />
             </div>
             
             <div className="flex justify-center mb-3">
               <span className="px-3 py-1 rounded-full text-xs font-bold uppercase" style={{
                 fontFamily: "'Expose', sans-serif",
-                background: 'rgba(239, 68, 68, 0.2)',
-                color: '#f87171',
-                border: '1px solid rgba(239, 68, 68, 0.3)'
+                background: 'rgba(54, 123, 235, 0.2)',
+                color: '#367beb',
+                border: '1px solid rgba(54, 123, 235, 0.3)'
               }}>
                 Reseller
               </span>
@@ -262,24 +261,22 @@ export default function ResellerPage() {
               </span>
             </div>
             
-            <Button 
-              variant="primary"
-              size="md"
-              className="w-full"
+            <a 
+              href="https://bloxproducts.com/scripts#LuminHub"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg text-sm text-white transition-all hover:scale-105"
               style={{ 
                 fontFamily: "'Expose', sans-serif",
-                background: 'linear-gradient(135deg, #ef4444, #dc2626)',
-                boxShadow: '0 8px 32px rgba(239, 68, 68, 0.4)'
+                background: 'linear-gradient(135deg, rgba(54, 123, 235, 0.4), rgba(54, 123, 235, 0.3))',
+                border: '1px solid rgba(54, 123, 235, 0.4)',
               }}
-              onClick={() => window.open('https://bloxproducts.com/scripts#LuminHub', '_blank')}
-              rightIcon={
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              }
             >
               Visit BloxProducts
-            </Button>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
           </div>
         </div>
         
