@@ -293,9 +293,9 @@ export default function HomePage() {
                   "0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.1)",
               }}
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-600/20 flex items-center justify-center mx-auto mb-3">
+              <div className="flex items-center justify-center mx-auto mb-3">
                 <svg
-                  className="w-6 h-6 text-purple-400"
+                  className="w-8 h-8 text-purple-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -334,9 +334,9 @@ export default function HomePage() {
                   "0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.1)",
               }}
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500/20 to-green-600/20 flex items-center justify-center mx-auto mb-3">
+              <div className="flex items-center justify-center mx-auto mb-3">
                 <svg
-                  className="w-6 h-6 text-green-400"
+                  className="w-8 h-8 text-green-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -375,9 +375,9 @@ export default function HomePage() {
                   "0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.1)",
               }}
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-600/20 flex items-center justify-center mx-auto mb-3">
+              <div className="flex items-center justify-center mx-auto mb-3">
                 <svg
-                  className="w-6 h-6 text-blue-400"
+                  className="w-8 h-8 text-blue-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

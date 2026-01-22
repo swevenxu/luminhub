@@ -27,6 +27,7 @@ export default function RootLayout({
         <link href="https://api.fontshare.com/v2/css?f[]=hind@400&f[]=khand@700&display=swap" rel="stylesheet" />
         <link href="https://api.fontshare.com/v2/css?f[]=bespoke-sans@400&f[]=expose@700&display=swap" rel="stylesheet" />
         <link href="https://api.fontshare.com/v2/css?f[]=switzer@400&f[]=plein@700&display=swap" rel="stylesheet" />
+        <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
       </head>
       <body className={`${inter.className} overflow-x-hidden`}>
         {children}
