@@ -16,20 +16,22 @@ export default function GetKeyPage() {
       .then(res => res.json())
       .then(data => {
         const country = data.country?.toLowerCase();
-        if (country && tier1Countries.includes(country)) {
-          setUserTier('tier1');
-        } else if (country && tier2Countries.includes(country)) {
-          setUserTier(Math.random() < 0.5 ? 'tier1' : 'tier3');
-        } else if (country && tier3Countries.includes(country)) {
+        if (country && tier3Countries.includes(country)) {
           setUserTier('tier3');
+        } else if (country && tier2Countries.includes(country)) {
+          // 50/50 chance: tier2a (Rinku + Workink) or tier2b (Workink + Linkvertise)
+          setUserTier(Math.random() < 0.5 ? 'tier2a' : 'tier2b');
         } else {
-          setUserTier('default');
+          // Tier 1 countries and any unrecognized countries default to tier1 (Rinku)
+          setUserTier('tier1');
         }
       })
-      .catch(() => setUserTier('default'));
+      .catch(() => setUserTier('tier1'));
   }, []);
-  const showRinku = userTier === 'tier1';
-  const showWorkinkLinkvertise = userTier === 'tier3' || userTier === 'default';
+  // Tier 1: Rinku only | Tier 2a: Rinku + Workink | Tier 2b: Workink + Linkvertise | Tier 3: Workink + Linkvertise
+  const showRinku = userTier === 'tier1' || userTier === 'tier2a';
+  const showWorkink = userTier === 'tier2a' || userTier === 'tier2b' || userTier === 'tier3';
+  const showLinkvertise = userTier === 'tier2b' || userTier === 'tier3';
   return (
     <>
     <Navbar />
@@ -75,7 +77,7 @@ export default function GetKeyPage() {
         )}
         
         {userTier !== 'loading' && (
-          <div className={`grid grid-cols-1 ${showRinku ? 'md:grid-cols-2 max-w-3xl' : 'md:grid-cols-3 max-w-5xl'} gap-4 md:gap-6 mb-16 md:mb-32 mx-auto`}>
+          <div className={`grid grid-cols-1 ${userTier === 'tier1' ? 'md:grid-cols-2 max-w-3xl' : 'md:grid-cols-3 max-w-5xl'} gap-4 md:gap-6 mb-16 md:mb-32 mx-auto`}>
             
             <div 
               className="relative rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02]"
@@ -200,7 +202,7 @@ export default function GetKeyPage() {
               </div>
             )}
             
-            {showWorkinkLinkvertise && (
+            {showWorkink && (
               <div 
                 className="relative rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02]"
                 style={{
@@ -270,7 +272,7 @@ export default function GetKeyPage() {
               </div>
             )}
             
-            {showWorkinkLinkvertise && (
+            {showLinkvertise && (
               <div 
                 className="relative rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02]"
                 style={{
