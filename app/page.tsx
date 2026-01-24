@@ -405,76 +405,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Support Section */}
-          <div
-            className="mt-8 md:mt-16 rounded-2xl p-6 md:p-8 text-center"
-            style={{
-              background: "linear-gradient(135deg, rgba(138, 43, 196, 0.15), rgba(168, 85, 247, 0.1))",
-              backdropFilter: "blur(40px) saturate(180%)",
-              WebkitBackdropFilter: "blur(40px) saturate(180%)",
-              border: "1px solid rgba(168, 85, 247, 0.3)",
-            }}
-          >
-            <div className="flex items-center justify-center mb-4">
-              <svg
-                className="w-10 h-10 text-purple-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"
-                />
-              </svg>
-            </div>
-            <h2
-              className="text-2xl md:text-3xl font-bold text-white mb-3 uppercase"
-              style={{
-                fontFamily: "'Khand', sans-serif",
-                textShadow:
-                  "1px 1px 2px rgba(41, 2, 66, 0.8), 2px 2px 4px rgba(41, 2, 66, 0.6)",
-              }}
-            >
-              Need <span style={{ color: "#8f21d1" }}>Help?</span>
-            </h2>
-            <p
-              className="text-gray-300 text-sm md:text-base mb-6 max-w-md mx-auto"
-              style={{ fontFamily: "'Bespoke Sans', sans-serif" }}
-            >
-              Got questions or running into issues? Our community is here to help you out.
-            </p>
-            <a
-              href="https://discord.gg/luminhub"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 uppercase text-sm"
-              style={{
-                fontFamily: "'Expose', sans-serif",
-                background: 'linear-gradient(135deg, rgba(127, 124, 255, 0.8), rgba(127, 124, 255, 0.6))',
-                backdropFilter: 'blur(20px)',
-                color: 'rgb(255, 255, 255)',
-                padding: '12px 24px',
-                borderRadius: '8px',
-                fontWeight: '500',
-                border: '1px solid rgba(127, 124, 255, 0.3)',
-                boxShadow: '0 4px 20px rgba(127, 124, 255, 0.3)',
-                transition: '0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              }}
-            >
-              <svg
-                className="w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z" />
-              </svg>
-              Join Discord for Support
-            </a>
-          </div>
-
+          
           <div
             className="mt-8 md:mt-10 rounded-2xl md:rounded-3xl py-6 md:py-8 px-4 md:px-8"
             style={{
