@@ -1,37 +1,10 @@
 'use client';
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Button from '@/components/Button';
 import Navbar from '@/components/Navbar';
-// country lists for geo targeting
-const tier1Countries = ['au', 'at', 'be', 'ca', 'dk', 'fi', 'fr', 'de', 'ie', 'it', 'lu', 'nl', 'nz', 'no', 'es', 'se', 'ch', 'uk', 'gb', 'us'];
-const tier2Countries = ['ee', 'fj', 'gr', 'gy', 'hk', 'hu', 'is', 'il', 'jp', 'kz', 'lv', 'lt', 'mo', 'my', 'mt', 'mx', 'me', 'ma', 'om', 'pa', 'py', 'pe', 'ph', 'pl', 'pt', 'pr', 'qa', 'kr', 'ro', 'ru', 'sa', 'rs', 'sg', 'sk', 'si', 'za', 'th', 'tr', 'ua', 'ae', 'uy', 'vu', 'cz', 'cl', 'ar', 'co', 'tw', 'bg', 'hr'];
-const tier3Countries = ['in', 'id', 'br', 'vn', 'eg', 'pk', 'bd', 'ng', 'ke', 'gh', 'tz', 'ug', 'zw', 'zm', 'et', 'sd', 'dz', 'iq', 'ir', 'af', 'mm', 'kh', 'la', 'np', 'lk', 'cn', 'ec', 'bo', 've', 'gt', 'hn', 'sv', 'ni', 'cr', 'do', 'cu', 'jm', 'ht', 'tt', 'tn', 'ly', 'jo', 'lb', 'sy', 'ye', 'uz', 'tm', 'tj', 'kg', 'az', 'ge', 'am', 'by', 'md', 'al', 'mk', 'ba', 'xk'];
+
 export default function GetKeyPage() {
-  const [userTier, setUserTier] = useState<string>('loading');
-  
-  useEffect(() => {
-    fetch('https://api.country.is/')
-      .then(res => res.json())
-      .then(data => {
-        const country = data.country?.toLowerCase();
-        if (country && tier3Countries.includes(country)) {
-          setUserTier('tier3');
-        } else if (country && tier2Countries.includes(country)) {
-          // 50/50 chance: tier2a (Rinku + Workink) or tier2b (Workink + Linkvertise)
-          setUserTier(Math.random() < 0.5 ? 'tier2a' : 'tier2b');
-        } else {
-          // Tier 1 countries and any unrecognized countries default to tier1 (Rinku)
-          setUserTier('tier1');
-        }
-      })
-      .catch(() => setUserTier('tier1'));
-  }, []);
-  // Tier 1: Rinku only | Tier 2a: Rinku + Workink | Tier 2b: Workink + Linkvertise | Tier 3: Workink + Linkvertise
-  const showRinku = userTier === 'tier1' || userTier === 'tier2a';
-  const showWorkink = userTier === 'tier2a' || userTier === 'tier2b' || userTier === 'tier3';
-  const showLinkvertise = userTier === 'tier2b' || userTier === 'tier3';
   return (
     <>
     <Navbar />
@@ -63,21 +36,12 @@ export default function GetKeyPage() {
           <p className="text-gray-400 text-base md:text-lg px-4" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
             Pick how you wanna get your Lumin script key.
           </p>
-          {showRinku && (
-            <p className="text-gray-500 text-sm mt-2" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
-              Scroll down below for Rinku tutorial.
-            </p>
-          )}
+          <p className="text-gray-500 text-sm mt-2" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
+            Scroll down below for Rinku tutorial.
+          </p>
         </div>
         
-        {userTier === 'loading' && (
-          <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-purple-500"></div>
-          </div>
-        )}
-        
-        {userTier !== 'loading' && (
-          <div className={`grid grid-cols-1 ${userTier === 'tier1' ? 'md:grid-cols-2 max-w-3xl' : 'md:grid-cols-3 max-w-5xl'} gap-4 md:gap-6 mb-16 md:mb-32 mx-auto`}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-16 md:mb-32 mx-auto max-w-5xl">
             
             <div 
               className="relative rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02]"
@@ -136,144 +100,71 @@ export default function GetKeyPage() {
               </Button>
             </div>
             
-            {showRinku && (
-              <div 
-                className="relative rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02]"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02))',
-                  backdropFilter: 'blur(40px) saturate(180%)',
-                  WebkitBackdropFilter: 'blur(40px) saturate(180%)',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.1)'
-                }}
-              >
-                <div className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs text-white" style={{ 
-                  fontFamily: "'Expose', sans-serif",
-                  background: 'rgba(59, 130, 246, 0.3)',
-                  backdropFilter: 'blur(10px)'
-                }}>
-                  RINKU
-                </div>
-                <div className="flex items-center justify-center mx-auto mb-4 h-14">
-                  <Image
-                    src="https://rinku.pro/asibye/auth/img/logowhite.svg"
-                    alt="Rinku"
-                    width={100}
-                    height={50}
-                    className="h-12 w-auto object-contain"
-                    style={{ filter: 'drop-shadow(0 4px 12px rgba(59, 130, 246, 0.3))' }}
-                  />
-                </div>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-center gap-2 text-gray-200 text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(59, 130, 246, 0.2)' }}>
-                      <svg className="w-3 h-3 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    Premium Experience
-                  </li>
-                  <li className="flex items-center gap-2 text-gray-200 text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(59, 130, 246, 0.2)' }}>
-                      <svg className="w-3 h-3 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    Excellent Performance
-                  </li>
-                  <li className="flex items-center gap-2 text-gray-200 text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(59, 130, 246, 0.2)' }}>
-                      <svg className="w-3 h-3 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
-                    </div>
-                    Fast &amp; Reliable
-                  </li>
-                </ul>
-                <Button 
-                  variant="glass-blue"
-                  size="md"
-                  className="w-full"
-                  style={{ fontFamily: "'Expose', sans-serif" }}
-                  onClick={() => window.open('https://ads.luarmor.net/get_key?for=Rinku-OessaHaIeAwd', '_blank')}
-                >
-                  Get Free Key
-                </Button>
+            <div 
+              className="relative rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02]"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02))',
+                backdropFilter: 'blur(40px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(40px) saturate(180%)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.1)'
+              }}
+            >
+              <div className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs text-white" style={{ 
+                fontFamily: "'Expose', sans-serif",
+                background: 'rgba(59, 130, 246, 0.3)',
+                backdropFilter: 'blur(10px)'
+              }}>
+                RINKU
               </div>
-            )}
-            
-            {showWorkink && (
-              <div 
-                className="relative rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02]"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02))',
-                  backdropFilter: 'blur(40px) saturate(180%)',
-                  WebkitBackdropFilter: 'blur(40px) saturate(180%)',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.1)'
-                }}
-              >
-                <div className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs text-white" style={{ 
-                  fontFamily: "'Expose', sans-serif",
-                  background: 'rgba(34, 197, 94, 0.3)',
-                  backdropFilter: 'blur(10px)'
-                }}>
-                  WORK.INK
-                </div>
-                <div className="flex items-center justify-center mx-auto mb-4 h-14">
-                  <Image
-                    src="/workink-logo.png"
-                    alt="Work.ink"
-                    width={100}
-                    height={50}
-                    className="h-12 w-auto object-contain"
-                    style={{ filter: 'drop-shadow(0 4px 12px rgba(34, 197, 94, 0.3))' }}
-                  />
-                </div>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-center gap-2 text-gray-200 text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(34, 197, 94, 0.2)' }}>
-                      <svg className="w-3 h-3 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </div>
-                    No Credits Required
-                  </li>
-                  <li className="flex items-center gap-2 text-gray-200 text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(34, 197, 94, 0.2)' }}>
-                      <svg className="w-3 h-3 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
-                    </div>
-                    Fast Loading
-                  </li>
-                  <li className="flex items-center gap-2 text-gray-200 text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(34, 197, 94, 0.2)' }}>
-                      <svg className="w-3 h-3 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                      </svg>
-                    </div>
-                    Reliable Service
-                  </li>
-                </ul>
-                <Button 
-                  variant="glass"
-                  size="md"
-                  className="w-full"
-                  style={{ 
-                    fontFamily: "'Expose', sans-serif",
-                    background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(22, 163, 74, 0.2))',
-                    border: '1px solid rgba(34, 197, 94, 0.3)'
-                  }}
-                  onClick={() => window.open('https://ads.luarmor.net/get_key?for=Lumin-dFQuGFpeaJAm', '_blank')}
-                >
-                  Get Free Key
-                </Button>
+              <div className="flex items-center justify-center mx-auto mb-4 h-14">
+                <Image
+                  src="https://rinku.pro/asibye/auth/img/logowhite.svg"
+                  alt="Rinku"
+                  width={100}
+                  height={50}
+                  className="h-12 w-auto object-contain"
+                  style={{ filter: 'drop-shadow(0 4px 12px rgba(59, 130, 246, 0.3))' }}
+                />
               </div>
-            )}
+              <ul className="space-y-2 mb-6">
+                <li className="flex items-center gap-2 text-gray-200 text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(59, 130, 246, 0.2)' }}>
+                    <svg className="w-3 h-3 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  Premium Experience
+                </li>
+                <li className="flex items-center gap-2 text-gray-200 text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(59, 130, 246, 0.2)' }}>
+                    <svg className="w-3 h-3 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  Excellent Performance
+                </li>
+                <li className="flex items-center gap-2 text-gray-200 text-sm" style={{ fontFamily: "'Bespoke Sans', sans-serif" }}>
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(59, 130, 246, 0.2)' }}>
+                    <svg className="w-3 h-3 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  Fast &amp; Reliable
+                </li>
+              </ul>
+              <Button 
+                variant="glass-blue"
+                size="md"
+                className="w-full"
+                style={{ fontFamily: "'Expose', sans-serif" }}
+                onClick={() => window.open('https://ads.luarmor.net/get_key?for=Rinku-OessaHaIeAwd', '_blank')}
+              >
+                Get Free Key
+              </Button>
+            </div>
             
-            {showLinkvertise && (
-              <div 
+            <div 
                 className="relative rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02]"
                 style={{
                   background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02))',
@@ -337,16 +228,13 @@ export default function GetKeyPage() {
                   }}
                   onClick={() => window.open('https://ads.luarmor.net/get_key?for=Linkvertise-FxRZfrMeBswV', '_blank')}
                 >
-                  Get Free Key
-                </Button>
-              </div>
-            )}
+                Get Free Key
+              </Button>
+            </div>
           </div>
-        )}
         
-        {showRinku && (
-          <>
-            <div className="text-center mb-8 md:mb-12">
+        <>
+          <div className="text-center mb-8 md:mb-12">
               <h2 className="text-2xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: "'Plein', sans-serif" }}>
                 Rinku <span style={{ color: '#8f21d1' }}>Tutorials</span>
               </h2>
@@ -433,15 +321,12 @@ export default function GetKeyPage() {
               </div>
             </div>
           </>
-        )}
         
-        {userTier !== 'loading' && (
-          <>
-            <div className="text-center mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: "'Plein', sans-serif" }}>
-                Why Choose <span style={{ color: '#8f21d1' }}>Lumin</span> Lifetime?
-              </h2>
-            </div>
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: "'Plein', sans-serif" }}>
+              Why Choose <span style={{ color: '#8f21d1' }}>Lumin</span> Lifetime?
+            </h2>
+          </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
               
               <div 
@@ -513,8 +398,6 @@ export default function GetKeyPage() {
                 </p>
               </div>
             </div>
-          </>
-        )}
         
         <footer 
           className="mt-16 md:mt-32 py-6 md:py-8 rounded-2xl md:rounded-3xl"
